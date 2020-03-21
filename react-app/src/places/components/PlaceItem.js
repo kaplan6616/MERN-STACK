@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import "./PlaceItem.css"
 import Card from '../../shared/components/UIElements/Card';
 import Button from "../../shared/components/FormElements/Button/Button"
 import Modal from "../../shared/components/UIElements/Modal"
 import Map from "../../shared/components/UIElements/Map"
+import {AuthContext} from "../../shared/context/auth-context";
 const PlaceItem = (props) => {
+    const auth = useContext(AuthContext);
     const [showMap,setShowMap] = useState(false);
     const [showDeleteModal,setShowDeleteModal] = useState(false);
     function openMapHandler(){
@@ -28,6 +30,19 @@ const PlaceItem = (props) => {
         closeShowDeleteModal()
     }
 
+    function createEditDeleteButtons(){
+        if(auth.isLoggedIn){
+            return (
+                <React.Fragment>
+                    <Button to={`/places/${props.id}`}>EDIT</Button>
+                    <Button onClick={openShowDeleteModal} danger>DELETE</Button>
+                </React.Fragment>
+            )
+        }
+        else{
+            return null
+        }
+    }
 
     return (
         <React.Fragment>
@@ -70,8 +85,7 @@ const PlaceItem = (props) => {
                     </div>
                     <div className="place-item__actions">
                         <Button onClick={openMapHandler} inverse>VIEW ON MAP</Button>
-                        <Button to={`/places/${props.id}`}>EDIT</Button>
-                        <Button onClick={openShowDeleteModal} danger>DELETE</Button>
+                        {createEditDeleteButtons()}
                     </div>
                 </Card>
             </li>
