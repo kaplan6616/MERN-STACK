@@ -29,14 +29,14 @@ const NewPlace = () => {
         console.log(formState.inputs);
     }
 
-  return (
-      <form className="place-form" onSubmit={placeSubmitHandler}>
-        <Input id="title" type="text" label="Title" element="input" validators ={[VALIDATOR_REQUIRE()]} errorText="Please Enter A Valid Title" onInput={inputHandler}/>
-        <Input id="description" label="Description" element="textarea" validators ={[VALIDATOR_MINLENGTH(5)]} errorText="Please Enter A Valid Dexription" onInput={inputHandler}/>
-        <Input id="adress" label="Adress" element="input" validators ={[VALIDATOR_REQUIRE()]} errorText="Please Enter A Valid Adress" onInput={inputHandler}/>
-        <Button type="submit" disabled={!formState.isValid} > ADD PLACE </Button>
-      </form>
-  )
+    return (
+        <form className="place-form" onSubmit={placeSubmitHandler}>
+            <Input id="title" type="text" label="Title" element="input" validators ={[VALIDATOR_REQUIRE()]} errorText="Please Enter A Valid Title" onInput={inputHandler}/>
+            <Input id="description" label="Description" element="textarea" validators ={[VALIDATOR_MINLENGTH(5)]} errorText="Please Enter A Valid Dexription" onInput={inputHandler}/>
+            <Input id="adress" label="Adress" element="input" validators ={[VALIDATOR_REQUIRE()]} errorText="Please Enter A Valid Adress" onInput={inputHandler}/>
+            <Button type="submit" disabled={!formState.isValid} > ADD PLACE </Button>
+        </form>
+    )
 
 };
 
